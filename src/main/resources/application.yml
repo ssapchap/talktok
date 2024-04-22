@@ -1,1 +1,13 @@
-spring.application.name=talktok
+server:
+  port: 80
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://adam.cpiq8808qo9q.ap-northeast-2.rds.amazonaws.com:3306/talktok
+    username: talktok
+    password: choongang
+
+  jpa:
+    hibernate:
+      ddl-auto: update
