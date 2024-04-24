@@ -8,12 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, String> {
 
-    StudentDto findStudentByStuEmail(String email);
+    Student findStudentByStuEmail(String stuEmail);
 
-    @Override
-    <S extends Student> S save(S entity);
 
-    void deleteStudentByStuNo(String stuNo);
+    void deleteStudentByStuNo(int stuNo);
 
 
 }
