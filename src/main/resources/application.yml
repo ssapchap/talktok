@@ -9,5 +9,7 @@ spring:
     password: choongang
 
   jpa:
+    database: mysql
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
+
