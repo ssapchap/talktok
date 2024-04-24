@@ -1,8 +1,17 @@
 package com.tt.talktok.controller;
 
+import com.tt.talktok.dto.TeacherDto;
+import com.tt.talktok.entity.Teacher;
+import com.tt.talktok.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -11,44 +20,24 @@ public class TeacherController {
 
     private final TeacherService teacherService;
 
-    // TeacherList
+    // 선생님 목록 조회
     @GetMapping("/list")
-    public String tourList(Teacher teacher Model model) {
-        List<Teacher> searchTeacherList = new ArrayList<>();
+    public String list(Model model) {
+        List<TeacherDto> teacherList = teacherService.list();
+        model.addAttribute("teacherList", teacherList);
+        System.out.println("teacherList:" + teacherList);
 
-        int limit = 12;
-
-        search.setLimit(limit);
-
-        int startRow = (search.getPage() - 1) * limit;
-        int endRow = startRow + 10 -1; search.setStartRow(startRow);
-
-        searchTourList = tourService.searchTourList(search);
-
-        int count = tourService.searchTourCount(search);
-        int maxPage = count / limit + ((count % 10 ==0)? 0:1);
-        int startPage = ((search.getPage()-1) /10) * 10 +1;
-        int endPage = startPage + 10 - 1;
-        if(endPage > maxPage) endPage = maxPage;
-
-        model.addAttribute("search", search);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
-        model.addAttribute("maxPage", maxPage);
-        model.addAttribute("tourCount", count);
-        model.addAttribute("tourList", searchTourList);
-
-        return "tour/list";
+        return "teacher/teacherList";
 
     }
 
     @GetMapping("/detail")
-    public String tourDetail(@RequestParam("tour_id") int tour_id, Model model) {
+    public String teacherDetail(@RequestParam("teacher_no") int teacher_no, Model model) {
 
-        Tour tourDetail = tourService.getTourOne(tour_id);
+        Teacher teacherDetail = teacherService.getTeacherDetail(teacher_no);
+        model.addAttribute("teacherDetail", teacherDetail);
 
-        model.addAttribute("tour", tourDetail);
-
-        return "tour/detail";
+        return "teacher/detail";
 
     }
+}

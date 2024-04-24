@@ -1,19 +1,20 @@
 package com.tt.talktok.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
 @Entity
-@Table(name="user_teacher")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Teacher {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY )
     private int tea_no;
+
     private String tea_name;
     private String tea_email;
     private String tea_pwd;
@@ -24,4 +25,5 @@ public class Teacher {
     private String tea_detail;
     private String tea_career;
     private String tea_nation;
+
 }
