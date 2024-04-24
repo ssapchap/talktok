@@ -58,7 +58,8 @@ public class TeacherService {
     }
 
     //선생 상세페이지 조회
-    public Teacher getTeacherDetail(Integer teacher_no){
-        return teacherRepository.findById(teacher_no).orElse(null);
+    public TeacherDto getTeacherDetail(int tea_no){
+        Teacher teacherdetails = teacherRepository.findById(tea_no).orElse(null);
+        return convertToDto(teacherdetails);
     }
 }
