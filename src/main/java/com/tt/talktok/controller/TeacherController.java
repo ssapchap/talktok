@@ -14,7 +14,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping
+@RequestMapping("/teacher")
 public class TeacherController {
 
     private final TeacherService teacherService;
@@ -24,19 +24,17 @@ public class TeacherController {
     public String list(Model model) {
         List<TeacherDto> teacherList = teacherService.list();
         model.addAttribute("teacherList", teacherList);
-        System.out.println("teacherList:" + teacherList);
 
-        return "list";
 
+        return "teacher/list";
     }
 
     @GetMapping("/detail")
-    public String teacherDetail(@RequestParam("teacher_no") int teacher_no, Model model) {
+    public String teacherDetail(@RequestParam("tea_no") int tea_no, Model model) {
 
-        Teacher teacherDetail = teacherService.getTeacherDetail(teacher_no);
+        TeacherDto teacherDetail = teacherService.getTeacherDetail(tea_no);
         model.addAttribute("teacherDetail", teacherDetail);
 
         return "teacher/detail";
-
     }
 }
