@@ -35,6 +35,11 @@ dependencies {
 	implementation 'org.apache.commons:commons-email:1.5'
 	
 
+
+	// email
+	implementation 'org.apache.commons:commons-email:1.5'
+
+
 }
 
 repositories {

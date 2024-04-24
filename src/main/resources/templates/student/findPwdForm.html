@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>회원탈퇴 양식</title>
+    <title>비밀번호 찾기 창</title>
 </head>
 <body>
 <div th:replace="~{header :: header}"></div> <!-- header.html 에서 header 태그 불러오기 -->
-<form action="/student/withdraw" method="post">
-    비밀번호 <input type="text" id="stuPwd" name="stuPwd" /> <br/>
-    <input type="submit" value="회원탈퇴">
+<form method="post" action="/student/findPwd" onsubmit="return check()">
+    아이디 <input type="text" id="stuEmail" name="stuEmail" placeholder="이메일을 입력하세요." /> <br/>
+    <input type="submit" value="비밀번호 찾기">
     <input type="button" value="취소" onclick="history.go(-1)">
+
 </form>
 
 <div th:replace="~{footer :: footer}"></div> <!-- footer.html 에서 footer 태그 불러오기 -->
