@@ -26,7 +26,7 @@ public class TeacherController {
         model.addAttribute("teacherList", teacherList);
         System.out.println("teacherList:" + teacherList);
 
-        return "teacher/teacherList";
+        return "list";
 
     }
 

@@ -12,37 +12,28 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name="review")
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rev_no;
+    @Column(name = "rev_no")
+    private Long revNo;
 
-    @Column
-    private String rev_name;
-    @Column
-    private String rev_detail;
-    @Column
-    private String rev_writer;
-    @Column
-    private String rev_readcount;
-    @Column
-    private int rev_score;
-    @Column
-    private String rev_date;
-    @Column
-    private int lec_no;
-    @Column
-    private int tea_no;
-//    // Lecture에 대한 ManyToOne 관계 추가
-//    @ManyToOne
-//    @JoinColumn(name = "lec_no") // Review 테이블에서 외래 키로 작용할 컬럼
-//    private Lecture lecture;
-//
-//    // Teacher에 대한 ManyToOne 관계 추가
-//    @ManyToOne
-//    @JoinColumn(name = "tea_no") // Review 테이블에서 외래 키로 작용할 컬럼
-//    private Teacher teacher;
+    @Column(name = "rev_name")
+    private String revName;
+    @Column(name = "rev_detail")
+    private String revDetail;
+    @Column(name = "rev_writer")
+    private String revWriter;
+    @Column(name = "rev_readcount")
+    private String revReadCount;
+    @Column(name = "rev_score")
+    private int revScore;
+    @Column(name = "rev_date")
+    private String revDate;
+    @Column(name = "lec_no")
+    private int lecNo;
+    @Column(name = "tea_no")
+    private int teaNo;
 
 }

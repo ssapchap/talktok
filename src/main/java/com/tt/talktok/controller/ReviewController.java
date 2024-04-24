@@ -6,6 +6,10 @@ import com.tt.talktok.service.ReviewService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,10 +27,11 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @GetMapping("/list")
-    public String review(Model model){
-        List<ReviewDto> reviews = reviewService.reviewFindAll();
-        log.info("review: {}", reviews);
-        model.addAttribute("reviews", reviews);
+    public String reviewAllFind(Model model, @PageableDefault(size = 10, sort = "revNo", direction = Sort.Direction.DESC) Pageable pageable) {
+        Page<ReviewDto> reviews = reviewService.reviewFindAll(pageable);
+        log.info("review: {}", reviews.getContent());
+        model.addAttribute("reviews", reviews.getContent());
+        model.addAttribute("page", reviews);
         return "review/list";
     }
 
