@@ -12,11 +12,9 @@ spring:
     database: mysql
     hibernate:
       ddl-auto: update
-<<<<<<< HEAD
+
     open-in-view: false
   devtools:
     livereload:
       enabled: true
-=======
 
->>>>>>> 9f116a1177c89e2f8675be55bff856dd51048480
