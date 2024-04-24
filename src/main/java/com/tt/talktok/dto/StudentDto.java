@@ -8,12 +8,11 @@ import lombok.Setter;
 @Getter
 public class StudentDto {
 
-    private String stuNo;
+    private int stuNo;
     private String stuName;
     private String stuEmail;
     private String stuPwd;
     private String stuPhone;
     private String stuNickname;
-    private String lecNo;
 
 }
