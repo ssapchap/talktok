@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<th:insert="header.html" id="header"></th:insert>
+<div th:replace="~{header :: header}"></div> <!-- header.html 에서 header 태그 불러오기 -->
 <section>
 <div class="wrap">
     <form id="searchTutorForm" name="searchTutorForm" method="post">
@@ -52,6 +52,6 @@
 </section>
 
 
-<th:insert="footer.html" id="footer"></th:insert>
+<div th:replace="~{footer :: footer}"></div> <!-- footer.html 에서 footer 태그 불러오기 -->
 </body>
 </html>
