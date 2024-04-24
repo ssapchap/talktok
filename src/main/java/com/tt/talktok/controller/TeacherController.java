@@ -25,6 +25,7 @@ public class TeacherController {
         List<TeacherDto> teacherList = teacherService.list();
         model.addAttribute("teacherList", teacherList);
 
+
         return "teacher/list";
     }
 
