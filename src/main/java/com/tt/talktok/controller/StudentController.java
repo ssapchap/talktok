@@ -35,17 +35,23 @@ public class StudentController {
 
         // 등록되지 않은 학생의 경우
         if(dbStudent == null){
-            result = 1;
-            model.addAttribute("result", result);
+            model.addAttribute("result", String.valueOf(result));
             return "student/login";
+            // 등록된 학생의 경우
         } else{
-            if(passwordEncoder.matches(student.getStuPwd(), dbStudent.getStuPwd()){
-                session.setAttribute("stuEmail", email);
+            if(passwordEncoder.matches(student.getStuPwd(), dbStudent.getStuPwd())){
+                result = 1;
 
+                session.setAttribute("stuEmail", email);
+                model.addAttribute("result", String.valueOf(result));
+                return "student/login";
+            } else {
+                result = 2;
+                session.setAttribute("result", String.valueOf(result));
+                return  "student/login";
             }
         }
 
-        return "student/login";
     }
 
     @GetMapping("/join")
