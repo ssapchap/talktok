@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<th:insert="header.html" id="header"></th:insert>
+<div th:replace="~{header :: header}"></div> <!-- header.html 에서 header 태그 불러오기 -->
 <section>
 <div class="wrap">
     <form id="searchTutorForm" name="searchTutorForm" method="post">
@@ -36,15 +36,16 @@
 <form class="teacher_contents">
     <div class="list-wrap">
         <div th:each="list : ${teacherList}" class="list">
-<!--            <div th:href="@{/teacher/detail(tea_no=${list.tea_no})}" class="inner">-->
-<!--                <img th:src="${list.tea_image}" th:alt="Image" th:case="*"></img>-->
-<!--                <img src="images/teacher.jpg" th:alt="No Image" th:case="null"></img>-->
-<!--            </div>-->
-            <div class="text-box">
-                <span class="name" th:text="${list.tea_name}">[[${tea_name}]]</span>
-                <span class="desc" th:text="${list.tea_intro}"></span>
+            <a th:href="@{/teacher/detail(tea_no=${list.tea_no})}" class="inner">상세페이지</a>
+                <div>
+                    <img th:if="${list.tea_image != null}" th:src="${list.tea_image}" />
+                    <img th:unless="${list.tea_image != null}" src="/images/noprofile.png" />
+                </div>
+                <div class="text-box">
+                    <span class="name" th:text="${list.tea_name}"></span><br>
+                    <span class="desc" th:text="${list.tea_intro}"></span>
+                </div>
 
-            </div>
         </div>
 
     </div>
@@ -52,6 +53,6 @@
 </section>
 
 
-<th:insert="footer.html" id="footer"></th:insert>
+<div th:replace="~{footer :: footer}"></div> <!-- footer.html 에서 footer 태그 불러오기 -->
 </body>
 </html>

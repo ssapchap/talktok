@@ -29,10 +29,7 @@
         var emailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         // 이메일 형식 및 '@' 문자의 존재 여부 확인
-        if (emailFormat.test(email)) {
-            alert("유효한 이메일 형식입니다.");
-            return true; // 유효성 검사 통과
-        } else {
+        if (!emailFormat.test(email)) {
             alert("유효하지 않은 이메일 형식입니다.");
             return false; // 유효성 검사 실패
         }
@@ -48,7 +45,7 @@
             return false;
         }
         if($.trim($("#stuPwd").val()) != $.trim($("#stuPwd2").val())){
-            alert("비번이 다릅니다!");
+            alert("비밀번호가 다릅니다!");
             $("#stuPwd").val("");
             $("#stuPwd2").val("");
             $("#stuPwd").focus();
@@ -99,10 +96,10 @@
                 data: {"stuEmail" : stuEmail},
                 success : function(result) {
                     if (result==1) { //중복 ID
-                        $("#id-result td").html("<font color=red>이미 존재하는 아이디입니다<font>");
+                        $("#id-result td").html("<font color=red>이미 존재하는 이메일입니다<font>");
                         $("#stuEmail").focus();
                     } else { //사용가능 ID
-                        $("#id-result td").html("<font color=blue>사용가능한 아이디입니다</font>");
+                        $("#id-result td").html("<font color=blue>사용가능한 이메일입니다</font>");
                         $("#stuPwd").focus();
                     }
                 }
@@ -115,6 +112,7 @@
 
 </head>
 <body>
+<div th:replace="~{header :: header}"></div> <!-- header.html 에서 header 태그 불러오기 -->
     <h2>회원가입</h2>
     <form method="post" action="/student/join" onsubmit="return boardCheck();">
         <table>
@@ -158,5 +156,6 @@
             <input type="button" value="뒤로가기" onclick="history.go(-1);">
         </div>
     </form>
+    <div th:replace="~{footer :: footer}"></div> <!-- footer.html 에서 footer 태그 불러오기 -->
 </body>
 </html>

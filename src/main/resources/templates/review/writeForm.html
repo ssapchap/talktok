@@ -31,7 +31,9 @@
     </script>
 </head>
 <body>
-    <div class="container mt-3">
+<div th:replace="~{header :: header}"></div> <!-- header.html 에서 header 태그 불러오기 -->
+
+    <div class="container mt-3" >
         <form action="/review/write" method="post">
             <input type="hidden" name="rev_writer" value="홍길순">
             <input type="hidden" name="lec_no" value="1">
