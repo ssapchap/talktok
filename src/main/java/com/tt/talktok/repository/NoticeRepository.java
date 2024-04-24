@@ -7,10 +7,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
+public interface NoticeRepository extends JpaRepository<Notice, Integer> {
 
     //페이징 처리
     Page<Notice> findAll(Pageable pageable);
-    //공지작성
 
+    //상세
+//    Notice findById(int noNo);
 }
