@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>비밀번호 찾기 창</title>
+</head>
+<body>
+<form method="post" action="/student/findPwd" onsubmit="return check()">
+    아이디 <input type="text" id="stuEmail" name="stuEmail" placeholder="이메일을 입력하세요." /> <br/>
+    <input type="submit" value="비밀번호 찾기">
+    <input type="button" value="취소" onclick="history.go(-1)">
+
+</form>
+</body>
+</html>

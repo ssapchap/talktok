@@ -13,3 +13,8 @@ spring:
     hibernate:
       ddl-auto: update
 
+  mail:
+    hostSMTPid: aircamp03@naver.com
+    hostSMTPpwd: aircamp123123
+
+

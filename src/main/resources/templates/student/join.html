@@ -9,13 +9,12 @@
 <!-- 타임리프 표현식을 사용하여 JavaScript 코드에 값을 전달합니다. -->
 <script th:inline="javascript">
     /*<![CDATA[*/
-    var result = '/*[[${result}]]*/';
+    var result = [[${result}]];
     if(result === 0){
         alert("가입이 완료되었습니다.");
         location.href="/student/login";
-    } else if (result === 1){
-        alert("중복된 이메일입니다.");
-        history.go(-1);
+    } else{
+        location.href="/student/login";
     }
     /*]]>*/
 </script>

@@ -15,35 +15,49 @@ public class StudentService {
     private final StudentRepository studentRepository;
 
     public StudentDto findStudent(String stuEmail) {
-        StudentDto dbStudent = studentRepository.findStudentByStuEmail(stuEmail);
 
-        return dbStudent;
+        Student dbStudent = studentRepository.findStudentByStuEmail(stuEmail);
+        StudentDto dbStudentDto = new StudentDto();
+        if(dbStudent !=null) {
+            dbStudentDto.setStuNo(dbStudent.getStuNo());
+            dbStudentDto.setStuEmail(dbStudent.getStuEmail());
+            dbStudentDto.setStuName(dbStudent.getStuName());
+            dbStudentDto.setStuPwd(dbStudent.getStuPwd());
+            dbStudentDto.setStuPhone(dbStudent.getStuPhone());
+            dbStudentDto.setStuNickname(dbStudent.getStuNickname());
+        }
+        return dbStudentDto;
     }
 
     public void join(StudentDto student) {
-        Student dbStudent = new Student();
+        Student newStudent = new Student();
 
         String pwd=student.getStuPwd();
         String encodePwd = passwordEncoder.encode(pwd);
 
+        newStudent.setStuName(student.getStuName());
+        newStudent.setStuEmail(student.getStuEmail());
+        newStudent.setStuPwd(encodePwd);
+        newStudent.setStuPhone(student.getStuPhone());
+        newStudent.setStuNickname(student.getStuNickname());
 
-        dbStudent.setStuName(student.getStuName());
-        dbStudent.setStuEmail(student.getStuEmail());
-        dbStudent.setStuPwd(encodePwd);
-        dbStudent.setStuPhone(student.getStuPhone());
-        dbStudent.setStuNickname(student.getStuNickname());
+        studentRepository.save(newStudent);
 
-        studentRepository.save(dbStudent);
     }
 
+
     public void withdraw(String stuEmail) {
-        //넘어온 email을 기준으로 db에 저장된 student 정보를 가져옴.
-        StudentDto dbStudent = studentRepository.findStudentByStuEmail(stuEmail);
+        Student dbStudent = studentRepository.findStudentByStuEmail(stuEmail);
+        studentRepository.delete(dbStudent);
+    }
 
-        String stuNo = dbStudent.getStuNo();
+    public void updatePwd(StudentDto student) {
+        String stuEmail = student.getStuEmail();
+        Student newStudent = studentRepository.findStudentByStuEmail(stuEmail);
 
-        studentRepository.deleteStudentByStuNo(stuNo);
+        newStudent.setStuPwd(student.getStuPwd());
 
+        studentRepository.save(newStudent);
 
     }
 }

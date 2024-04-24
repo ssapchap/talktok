@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>회원탈퇴 양식</title>
 </head>
 <body>
-
+<form action="/student/withdraw" method="post">
+    비밀번호 <input type="text" id="stuPwd" name="stuPwd" /> <br/>
+    <input type="submit" value="회원탈퇴">
+    <input type="button" value="취소" onclick="history.go(-1)">
+</form>
 </body>
 </html>

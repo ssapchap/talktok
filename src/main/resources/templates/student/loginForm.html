@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>로그인 창</title>
+    <title>로그인 폼</title>
     <script>
         function boardCheck() {
             var stuEmail = $.trim($("#stuEmail").val());
@@ -30,8 +30,7 @@
     비밀번호 <input type="text" id="stuPwd" name="stuPwd" /> <br/>
     <input type="submit" value="로그인">
     <input type="button" value="회원가입" onclick="location='/student/join'">
-    <input type="button" value="비밀번호 찾기">
-    <input type="button" value="회원탈퇴" onclick="location='/student/withdraw'">
+    <input type="button" value="비밀번호 찾기" onclick="location='/student/findPwd'">
 
 </form>
 </body>
