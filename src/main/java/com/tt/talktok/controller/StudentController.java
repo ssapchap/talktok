@@ -46,16 +46,25 @@ public class StudentController {
 
         // 등록되지 않은 학생의 경우
         if(dbStudent.getStuEmail() == null){
+<<<<<<< HEAD
+=======
+            System.out.println("등록되지 않은 학생의 경우");
+>>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
             model.addAttribute("result", result);
             // 등록된 학생의 경우
         } else {
             //비번이 같을때
             if(passwordEncoder.matches(student.getStuPwd(), dbStudent.getStuPwd())){
                 result = 1;
+<<<<<<< HEAD
+=======
+                System.out.println("비번이 같을때");
+>>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
                 session.setAttribute("stuEmail", email);
                 model.addAttribute("result", result);
             //비번이 다를때
             } else {
+                System.out.println("비번이 다를때");
                 result = 2;
                 model.addAttribute("result", result);
             }
@@ -189,10 +198,17 @@ public class StudentController {
         return "student/withdrawForm";
     }
 
+<<<<<<< HEAD
 
     // 회원탈퇴
     @PostMapping("/withdraw")
     public String withdraw(@ModelAttribute StudentDto studentDto, HttpSession session, Model model) {
+=======
+    // 회원 탈퇴
+    // 회원탈퇴 양식으로 이동
+    /*@PostMapping("/withdraw")
+    public String withdraw(@RequestParam("stuPwd") String stuPwd, Model model, HttpSession session) {
+>>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
         int result=0;
 
         String stuEmail = (String) session.getAttribute("stuEmail");
@@ -215,5 +231,5 @@ public class StudentController {
             return "student/withdraw";
         }
 
-    }
+    }*/
 }

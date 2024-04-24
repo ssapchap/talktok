@@ -19,7 +19,10 @@ public class StudentService {
         Student dbStudent = studentRepository.findStudentByStuEmail(stuEmail);
         StudentDto dbStudentDto = new StudentDto();
         if(dbStudent !=null) {
+<<<<<<< HEAD
             dbStudentDto.setStuNo(dbStudent.getStuNo());
+=======
+>>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
             dbStudentDto.setStuEmail(dbStudent.getStuEmail());
             dbStudentDto.setStuName(dbStudent.getStuName());
             dbStudentDto.setStuPwd(dbStudent.getStuPwd());
@@ -42,6 +45,7 @@ public class StudentService {
         newStudent.setStuNickname(student.getStuNickname());
 
         studentRepository.save(newStudent);
+<<<<<<< HEAD
 
     }
 
@@ -58,8 +62,12 @@ public class StudentService {
         newStudent.setStuPwd(student.getStuPwd());
 
         studentRepository.save(newStudent);
+=======
+>>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
 
     }
+
+
 }
 
 
