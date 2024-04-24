@@ -13,15 +13,15 @@ spring:
     hibernate:
       ddl-auto: update
 
-<<<<<<< HEAD:src/main/resources/application.yaml
+
   mail:
     hostSMTPid: aircamp03@naver.com
     hostSMTPpwd: aircamp123123
 
-=======
+
     open-in-view: false
   devtools:
     livereload:
       enabled: true
->>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39:src/main/resources/application.yml
+
 

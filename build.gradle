@@ -35,16 +35,15 @@ dependencies {
 	implementation 'org.apache.commons:commons-email:1.5'
 	
 
-<<<<<<< HEAD
+
 	// email
 	implementation 'org.apache.commons:commons-email:1.5'
 
-=======
+
 }
 
 repositories {
 	mavenCentral()
->>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
 }
 
 tasks.named('test') {

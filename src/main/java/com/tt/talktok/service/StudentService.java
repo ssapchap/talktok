@@ -1,12 +1,15 @@
 package com.tt.talktok.service;
 
 import com.tt.talktok.dto.StudentDto;
+import com.tt.talktok.dto.TeacherDto;
 import com.tt.talktok.entity.Student;
 import com.tt.talktok.repository.StudentRepository;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@Builder
 @Service
 @RequiredArgsConstructor
 public class StudentService {
@@ -14,56 +17,66 @@ public class StudentService {
     private final BCryptPasswordEncoder passwordEncoder;
     private final StudentRepository studentRepository;
 
+    //entity의 내용을 dto로 이동
+    public StudentDto convertToDto(Student entity){
+        return StudentDto.builder()
+                .stuNo(entity.getStuNo())
+                .stuName(entity.getStuName())
+                .stuEmail(entity.getStuEmail())
+                .stuPwd(entity.getStuPwd())
+                .stuPhone(entity.getStuPhone())
+                .stuNickname(entity.getStuNickname())
+                .build();
+    }
+
+    //entity의 내용을 dto로 이동
+    public Student convertToEntity(StudentDto dto){
+        return Student.builder()
+                .stuNo(dto.getStuNo())
+                .stuName(dto.getStuName())
+                .stuEmail(dto.getStuEmail())
+                .stuPwd(dto.getStuPwd())
+                .stuPhone(dto.getStuPhone())
+                .stuNickname(dto.getStuNickname())
+                .build();
+    }
+
+
     public StudentDto findStudent(String stuEmail) {
 
         Student dbStudent = studentRepository.findStudentByStuEmail(stuEmail);
         StudentDto dbStudentDto = new StudentDto();
         if(dbStudent !=null) {
-<<<<<<< HEAD
-            dbStudentDto.setStuNo(dbStudent.getStuNo());
-=======
->>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
-            dbStudentDto.setStuEmail(dbStudent.getStuEmail());
-            dbStudentDto.setStuName(dbStudent.getStuName());
-            dbStudentDto.setStuPwd(dbStudent.getStuPwd());
-            dbStudentDto.setStuPhone(dbStudent.getStuPhone());
-            dbStudentDto.setStuNickname(dbStudent.getStuNickname());
+            dbStudentDto=convertToDto(dbStudent);
         }
         return dbStudentDto;
     }
 
-    public void join(StudentDto student) {
+    public void join(StudentDto studentDto) {
         Student newStudent = new Student();
 
-        String pwd=student.getStuPwd();
+        String pwd=studentDto.getStuPwd();
         String encodePwd = passwordEncoder.encode(pwd);
 
-        newStudent.setStuName(student.getStuName());
-        newStudent.setStuEmail(student.getStuEmail());
+        newStudent = convertToEntity(studentDto);
         newStudent.setStuPwd(encodePwd);
-        newStudent.setStuPhone(student.getStuPhone());
-        newStudent.setStuNickname(student.getStuNickname());
 
         studentRepository.save(newStudent);
-<<<<<<< HEAD
-
     }
-
 
     public void withdraw(String stuEmail) {
         Student dbStudent = studentRepository.findStudentByStuEmail(stuEmail);
         studentRepository.delete(dbStudent);
     }
 
-    public void updatePwd(StudentDto student) {
-        String stuEmail = student.getStuEmail();
+    public void updatePwd(StudentDto studentDto) {
+        String stuEmail = studentDto.getStuEmail();
         Student newStudent = studentRepository.findStudentByStuEmail(stuEmail);
 
-        newStudent.setStuPwd(student.getStuPwd());
+        newStudent.setStuPwd(studentDto.getStuPwd());
 
         studentRepository.save(newStudent);
-=======
->>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
+
 
     }
 

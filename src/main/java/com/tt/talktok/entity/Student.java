@@ -1,12 +1,13 @@
 package com.tt.talktok.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Entity
 @Getter
 @Setter
+@Entity
+@Builder
+@AllArgsConstructor
 @Table(name = "student")
 public class Student {
 
@@ -19,10 +20,9 @@ public class Student {
     private String stuPwd;
     private String stuPhone;
     private String stuNickname;
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
+    public Student() {
+        // 기본 생성자 추가
+    }
 
 }

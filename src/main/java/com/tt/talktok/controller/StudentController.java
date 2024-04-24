@@ -1,12 +1,10 @@
 package com.tt.talktok.controller;
 
 import com.tt.talktok.dto.StudentDto;
-import com.tt.talktok.entity.Student;
 import com.tt.talktok.service.StudentService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.mail.HtmlEmail;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -26,11 +24,8 @@ public class StudentController {
     @Value("${spring.mail.hostSMTPpwd}")
     String hostSMTPpwd;
 
-
-
     private final BCryptPasswordEncoder passwordEncoder;
     private final StudentService studentService;
-
 
     @GetMapping("/login")
     public String login() {
@@ -46,20 +41,16 @@ public class StudentController {
 
         // 등록되지 않은 학생의 경우
         if(dbStudent.getStuEmail() == null){
-<<<<<<< HEAD
-=======
+
             System.out.println("등록되지 않은 학생의 경우");
->>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
             model.addAttribute("result", result);
             // 등록된 학생의 경우
         } else {
             //비번이 같을때
             if(passwordEncoder.matches(student.getStuPwd(), dbStudent.getStuPwd())){
                 result = 1;
-<<<<<<< HEAD
-=======
+
                 System.out.println("비번이 같을때");
->>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
                 session.setAttribute("stuEmail", email);
                 model.addAttribute("result", result);
             //비번이 다를때
@@ -100,9 +91,8 @@ public class StudentController {
     public int idcheck(@RequestParam("stuEmail") String stuEmail) {
         int result = 0;
 
-
         StudentDto student = studentService.findStudent(stuEmail);
-        if (student != null) { // 중복 ID
+        if (student.getStuEmail() != null) { // 중복 ID
             result = 1;
         } else { // 사용가능 ID
             result = -1;
@@ -121,7 +111,7 @@ public class StudentController {
 
     //마이페이지
     @GetMapping("/myPage")
-    public String myPage(HttpSession session) {
+    public String myPage() {
         return "student/myPage";
     }
 
@@ -131,7 +121,7 @@ public class StudentController {
     }
 
     @PostMapping("/findPwd")
-    public String findPwd(@ModelAttribute StudentDto studentDto, Model model) throws Exception {
+    public String findPwd(@ModelAttribute StudentDto studentDto, Model model) {
         int result = 0;
 
         String stuEmail = studentDto.getStuEmail();
@@ -149,8 +139,6 @@ public class StudentController {
             student.setStuEmail(stuEmail);
             student.setStuPwd(passwordEncoder.encode(newPwd));
             studentService.updatePwd(student);
-            System.out.println(newPwd);
-            System.out.println(stuEmail);
 
             // Mail Server 설정
             String charSet = "utf-8";
@@ -194,21 +182,14 @@ public class StudentController {
 
     // 회원 탈퇴 양식으로 이동
     @GetMapping("/withdraw")
-    public String withdraw(HttpSession session, Model model) {
+    public String withdraw() {
         return "student/withdrawForm";
     }
 
-<<<<<<< HEAD
 
     // 회원탈퇴
     @PostMapping("/withdraw")
     public String withdraw(@ModelAttribute StudentDto studentDto, HttpSession session, Model model) {
-=======
-    // 회원 탈퇴
-    // 회원탈퇴 양식으로 이동
-    /*@PostMapping("/withdraw")
-    public String withdraw(@RequestParam("stuPwd") String stuPwd, Model model, HttpSession session) {
->>>>>>> 673b8f51a6f48018dff5d9778b809e802f3bec39
         int result=0;
 
         String stuEmail = (String) session.getAttribute("stuEmail");
@@ -231,5 +212,5 @@ public class StudentController {
             return "student/withdraw";
         }
 
-    }*/
+    }
 }
