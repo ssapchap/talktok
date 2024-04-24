@@ -27,31 +27,31 @@ public class StudentController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute StudentDto student, Model model, HttpSession session) {
-        System.out.println("로그인 이동");
         int result = 0;
-
+        System.out.println(student.getStuPwd());
         String email = student.getStuEmail();
         StudentDto dbStudent = studentService.findStudent(email);
 
         // 등록되지 않은 학생의 경우
-        if(dbStudent == null){
-            model.addAttribute("result", String.valueOf(result));
-            return "student/login";
+        if(dbStudent.getStuEmail() == null){
+            System.out.println("등록되지 않은 학생의 경우");
+            model.addAttribute("result", result);
             // 등록된 학생의 경우
-        } else{
+        } else {
+            //비번이 같을때
             if(passwordEncoder.matches(student.getStuPwd(), dbStudent.getStuPwd())){
                 result = 1;
-
+                System.out.println("비번이 같을때");
                 session.setAttribute("stuEmail", email);
-                model.addAttribute("result", String.valueOf(result));
-                return "student/login";
+                model.addAttribute("result", result);
+            //비번이 다를때
             } else {
+                System.out.println("비번이 다를때");
                 result = 2;
-                session.setAttribute("result", String.valueOf(result));
-                return  "student/login";
+                model.addAttribute("result", result);
             }
         }
-
+        return "student/login";
     }
 
     @GetMapping("/join")
@@ -64,19 +64,15 @@ public class StudentController {
         int result = 0;
 
         String stuEmail = student.getStuEmail();
-        StudentDto dbStudent = studentService.findStudent(stuEmail);
 
-        // tring.valueOf(result)를 사용하여 숫자를 문자열로 변환한 후 모델에 추가해야 합니다. 그러면 Thymeleaf가 HTML로 렌더링할 때 숫자를 문자열로 출력하게 됩니다
+         StudentDto dbStudent = studentService.findStudent(stuEmail);
         //가입된 email = 1, 가입안된 email = 0
-        if(dbStudent==null){
+        if(dbStudent != null){
             studentService.join(student);
-            result =1;
-            model.addAttribute("result",String.valueOf(result));
+            model.addAttribute("result",result);
             return "student/join";
         }
-        model.addAttribute("result",String.valueOf(result));
         return "student/join";
-
     }
 
     // 회원 탈퇴
@@ -93,7 +89,7 @@ public class StudentController {
 
     // 회원 탈퇴
     // 회원탈퇴 양식으로 이동
-    @PostMapping("/withdraw")
+    /*@PostMapping("/withdraw")
     public String withdraw(@RequestParam("stuPwd") String stuPwd, Model model, HttpSession session) {
         int result=0;
 
@@ -116,5 +112,5 @@ public class StudentController {
             return "student/withdraw";
         }
 
-    }
+    }*/
 }
