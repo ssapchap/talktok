@@ -57,10 +57,10 @@ public class NoticeController {
     }
 
     // 공지사항 수정
-    @GetMapping("/update")
-    public String noticeUpdate(@ModelAttribute Notice notice, Model model){
-        Notice noticeUpdate = noticeService.getNoticeUpdate(notice.getNoNo());
-        model.addAttribute("noticeUpdate", noticeUpdate);
-        return "notice/updateForm";
-    }
+//    @GetMapping("/update")
+//    public String noticeUpdate(@ModelAttribute Notice notice, Model model){
+//        Notice noticeUpdate = noticeService.getNoticeUpdate(notice.getNoNo());
+//        model.addAttribute("noticeUpdate", noticeUpdate);
+//        return "notice/updateForm";
+//    }
 }

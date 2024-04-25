@@ -60,7 +60,7 @@ public class NoticeService {
         return noticeRepository.findById(noNo).orElse(null);
     }
 
-    public Notice getNoticeUpdate(Integer noNo) {
-        retur
-    }
+//    public Notice getNoticeUpdate(Integer noNo) {
+////        return
+//    }
 }
