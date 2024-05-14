@@ -1,0 +1,71 @@
+/* 반응형 1279 이하 */
+@media (max-width: 1279px) {
+    .mo-gnb, .mo-gnb-wrap {display: block;}
+    #hd .wrap .gnb-wrap,
+    #hd .wrap .util-menu {display: none;}
+    /*hd*/
+    #hd .wrap .logo a {padding: 15px;}
+    .mo-gnb {position: absolute; right: -100%; top: 0; width: 100%; height: 100vh; background: transparent; transition: .4s;}
+    .mo-gnb i {position: absolute; right: 4%; top: 37px; z-index: 1000; font-size: 20px; font-weight: 100; color: #555;}
+    .mo-gnb-wrap.wrap {position: absolute; right: 0; top: 0; width: 95%; height: 100%; background: #fff; display: block !important; padding: 30px;}
+    .mo-gnb-wrap .util div {display: flex; gap: 20px; width: 50%;}
+    .mo-gnb-wrap .util div a {display: block; flex-basis: 50%; border:1px solid #f9a01b; border-radius: 50px; padding: 7px; text-align: center; color: #f9a01b;}
+    .mo-gnb-wrap .util div a:last-of-type {background: #f9a01b; color: #fff;}
+    .mo-gnb-wrap .menu {margin-top: 30px;}
+    .mo-gnb-wrap .menu .gnb li + li {border-top: 1px solid #ddd;}
+    .mo-gnb-wrap .menu .gnb li a {display: block; font-weight: 500; color: #3b3b3b; transition: .3s; padding: 15px 0;}
+    .mo-gnb-wrap .menu .gnb li a:hover {color: #f9a01b;}
+    .mo-gnb-wrap .menu .gnb li a:after {content: '>'; display:inline; float: right; color: #555; margin-top: -1px;}
+    /*ft*/
+    #ft .wrap {padding: 30px;}
+    /*main-banner*/
+    .banner-wrap .box .inner {padding: 60px 30px !important;}
+    .banner-wrap .box .inner .img-box {position: unset !important; margin-top: 20px;}
+    .banner-wrap .box .inner .img-box img {width: 100%;}
+    .banner-wrap .box .inner .text h3 {font-size: 18px !important;}
+    .banner-wrap .box .inner .text h2 {font-size: 30px !important; line-height: 1.2; margin-bottom: 15px !important;}
+    .banner-wrap .box .inner .text p {font-size: 17px !important;}
+    /*main-teacher*/
+    .teacher-box {flex-wrap: wrap;}
+    .teacher-box .list {flex-basis: calc(50% - 20px); margin: 10px !important;}
+    /*main-notice*/
+    .notice-list tr th:nth-of-type(3),
+    .notice-list tr th:nth-of-type(4),
+    .notice-list tr th:nth-of-type(5),
+    .notice-list tr td:nth-of-type(3),
+    .notice-list tr td:nth-of-type(4),
+    .notice-list tr td:nth-of-type(5) {display: none;}
+
+    /*sub-teacher*/
+    .teacher-contents .list-wrap .teacher-item {flex-basis: calc(50% - 15px) !important;}
+    .teacher-contents .list-wrap .teacher-item .teacher-inner {height: 340px !important;}
+    .teacher-contents .list-wrap .teacher-item .teacher-inner img {height: 170px;}
+    .teacher-view-item .teacher-detail {margin: 20px;}
+    .teacher-view-item .teacher-detail .teacher-image-info {display: block;}
+
+    /*sub-lecture*/
+    .lecture .list-box {gap: 20px;}
+    .lecture .list-box .list {width: calc(50% - 10px);}
+    .lecture .list-box .list a img {height: 230px;}
+    .lecture .list-box .list a .text h3 {font-size: unset;}
+    .lecture .float-box {flex-basis: 85%;}
+    .lecture main.wrap {margin: 40px auto;}
+
+    /*sub-notice*/
+    .notice-page h2 {margin-bottom: 20px;}
+    .notice-page table tr th:nth-of-type(3),
+    .notice-page table tr th:nth-of-type(4),
+    .notice-page table tr th:nth-of-type(5),
+    .notice-page table tr td:nth-of-type(3),
+    .notice-page table tr td:nth-of-type(4),
+    .notice-page table tr td:nth-of-type(5) {display: none;}
+    .notice-page tbody {width: 100%;}
+
+    /*mypage*/
+    main.mypage-wrap.wrap {flex-direction: column; margin:50px auto;}
+    .mypage-wrap .info {padding: 0 15px !important;}
+    .mypage-wrap .info .mode {margin-left: 36% !important;}
+    .mypage-wrap .detail .img-wrap {display: block !important;}
+    .mypage-wrap .detail .img-wrap .img-box + .img-box {margin-top: 20px;}
+    .mypage-wrap .detail {padding: 0 15px !important;}
+}
