@@ -13,9 +13,11 @@
 - 강의 결제 : 포트원 카카오페이 API 이용, 단일(1개) 및 여러(2개 이상) 강의 결제
 - 강의 스터디룸 : 강의번호와 내 메일이 자동으로 입력되도록 처리
 
+
 ⇒ 1차 협업을 통해 서로의 코드를 더 잘 이해할 수 있도록 주석 처리를 하거나, GitHub를 활발하게 활용하는 등 다양한 개선점을 도출했습니다. 
 또한, 결제 후 콜백 데이터를 DB에 맞게 커스텀하여 저장하는 과정에서 형변환에 대해 많은 경험을 쌓았습니다. 이를 통해 보다 기초적인 부분을 깊게 이해해야 한다는 깨달음을 얻었습니다.
 
-![01](https://github.com/ssapchap/talktok/assets/163481508/d0122f51-e69b-49fc-a114-837327690bd3)
+![01](https://github.com/ssapchap/talktok/assets/163481508/8da7de79-0f5c-440d-901d-9a2196f37d64)
 
-![02](https://github.com/ssapchap/talktok/assets/163481508/dc423676-a4ef-4855-910a-6ab15eae4ad1)
+
+![02](https://github.com/ssapchap/talktok/assets/163481508/9d6620f2-cbcf-434e-81a4-1409d0e0b318)
