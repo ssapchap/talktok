@@ -2,9 +2,11 @@ package com.tt.talktok.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class LectureDto {
     private int lec_no;
     private String lec_name;
@@ -14,4 +16,5 @@ public class LectureDto {
     private String lec_detail;
     private String lec_startdate;
     private String lec_enddate;
+    private int tea_no;
 }

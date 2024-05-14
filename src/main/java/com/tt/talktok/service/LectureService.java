@@ -1,9 +1,9 @@
 package com.tt.talktok.service;
 
-import com.tt.talktok.controller.LectureController;
 import com.tt.talktok.dto.LectureDto;
 import com.tt.talktok.entity.Lecture;
 import com.tt.talktok.repository.LectureRepository;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
+
 public class LectureService {
 
     private final LectureRepository lectureRepository;
@@ -31,6 +32,7 @@ public class LectureService {
         Page<Lecture> lecturePage = lectureRepository.findAll(pageable);
         return lecturePage.map(this::convertToDto);
     }
+
     // convertToDto
     private LectureDto convertToDto(Lecture lecture) { // Lecture 엔티티를 파라미터로 받는다
         LectureDto dto = new LectureDto(); // 새로운 LectureDto 객체를 생성
@@ -40,11 +42,26 @@ public class LectureService {
         dto.setLec_time(lecture.getLec_time());
         dto.setLec_price(lecture.getLec_price());
         dto.setLec_detail(lecture.getLec_detail());
-        dto.setLec_startdate(lecture.getLec_startdate());
+        dto.setLec_startdate(lecture.getLecStartdate());
         dto.setLec_enddate(lecture.getLec_enddate());
+        dto.setTea_no(lecture.getTeaNo());
         return dto; // 마지막으로 변환된 LectureDto 객체를 반환한다
     }
-    
+
+    private Lecture convertToEntity(LectureDto dto) { // LectureDto 객체를 파라미터로 받는다
+        Lecture lecture = new Lecture(); // 새로운 Lecture 엔티티 객체를 생성
+        lecture.setLecNo(dto.getLec_no()); // DTO의 각 필드 값을 엔티티의 해당 필드에 복사한다
+        lecture.setLec_name(dto.getLec_name());
+        lecture.setLec_day(dto.getLec_day());
+        lecture.setLec_time(dto.getLec_time());
+        lecture.setLec_price(dto.getLec_price());
+        lecture.setLec_detail(dto.getLec_detail());
+        lecture.setLecStartdate(dto.getLec_startdate());
+        lecture.setLec_enddate(dto.getLec_enddate());
+        lecture.setTeaNo(dto.getTea_no());
+        return lecture; // 마지막으로 변환된 Lecture 엔티티 객체를 반환한다
+    }
+
     // 강의 하나 가져오기
     public LectureDto findLectureByLecNo(int lec_no) {
         Lecture lecture = lectureRepository.findByLecNo(lec_no);
@@ -54,4 +71,25 @@ public class LectureService {
             return null;
         }
     }
+
+    //강의 생성
+    public void lecJoin(LectureDto lectureDto) {
+        Lecture newlecture = convertToEntity(lectureDto);
+        lectureRepository.save(newlecture);
+    }
+    //강사 자기 강의 조회
+    public List<LectureDto> findAllByTeaNo(int tea_no) {
+        List<Lecture> lectureList = lectureRepository.findAllByTeaNoOrderByLecStartdateDesc(tea_no);
+        return lectureList.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+//    public List<LectureDto> findAllByTeaNo(int tea_no) {
+//        List<Lecture> lectureList = lectureRepository.findAllByTeaNoOrderByLecStartdateDesc(tea_no);
+//        return lectureList.stream()
+//                .map(this::convertToDto)
+//                .collect(Collectors.toList());
+//    }
+
+
 }
